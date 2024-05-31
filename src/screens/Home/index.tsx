@@ -4,7 +4,11 @@ import { styles } from "./styles";
 
 export function Home() {
   function handleParticipantAdd() {
-    console.log("Você clicou em ADD.");
+    console.log("Você clicou em Adicionar.");
+  }
+
+  function handleParticipantRemove(name: string) {
+    console.log(`Você tentou remover o participante: ${name}`);
   }
 
   return (
@@ -21,10 +25,22 @@ export function Home() {
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>
-      <Participant name="Elias Junior" />
-      <Participant name="Rodrigo Bonfim" />
-      <Participant name="Adriano Mauricio" />
-      <Participant name="Davi Leonardo" />
+      <Participant
+        name="Elias Junior"
+        onRemove={() => handleParticipantRemove("Elias Junior")}
+      />
+      <Participant
+        name="Rodrigo Bonfim"
+        onRemove={() => handleParticipantRemove("Rodrigo Bonfim")}
+      />
+      <Participant
+        name="Adriano Mauricio"
+        onRemove={() => handleParticipantRemove("Adriano Mauricio")}
+      />
+      <Participant
+        name="Davi Leonardo"
+        onRemove={() => handleParticipantRemove("Davi Leonardo")}
+      />
     </View>
   );
 }

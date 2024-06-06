@@ -4,6 +4,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { Participant } from "../../components/Participant";
 import { styles } from "./styles";
@@ -23,10 +24,32 @@ export function Home() {
   ];
 
   function handleParticipantAdd() {
+    if (participants.includes("Elias Junior")) {
+      Alert.alert(
+        "Erro ao adicionar participante",
+        "Já existe um participante com o nome informado!"
+      );
+    }
+
     console.log("Você clicou em Adicionar.");
   }
 
   function handleParticipantRemove(name: string) {
+    Alert.alert(
+      "Remover participante",
+      `Você confirma a remoção do participante ${name}?`,
+      [
+        {
+          text: "Sim",
+          onPress: () => Alert.alert(`O participante ${name} foi removido!`),
+        },
+        {
+          text: "Não",
+          style: "cancel",
+        },
+      ]
+    );
+
     console.log(`Você tentou remover o participante: ${name}`);
   }
 

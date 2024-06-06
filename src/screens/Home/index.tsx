@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   FlatList,
   View,
@@ -10,8 +11,7 @@ import { Participant } from "../../components/Participant";
 import { styles } from "./styles";
 
 export function Home() {
-  const participants = [
-    "Elias Junior",
+  const [participants, setParticipants] = useState([
     "Rodrigo Bonfim",
     "Adriano Mauricio",
     "Davi Leonardo",
@@ -20,18 +20,19 @@ export function Home() {
     "Bruna Queiroz",
     "Allan Pereira",
     "Gustavo Wong",
-    "William Barreira",
-  ];
+  ]);
 
   function handleParticipantAdd() {
     if (participants.includes("Elias Junior")) {
-      Alert.alert(
+      return Alert.alert(
         "Erro ao adicionar participante",
         "Já existe um participante com o nome informado!"
       );
     }
 
     console.log("Você clicou em Adicionar.");
+
+    setParticipants((prevState) => ["Elias Junior", ...prevState]);
   }
 
   function handleParticipantRemove(name: string) {

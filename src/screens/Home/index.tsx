@@ -22,18 +22,24 @@ export function Home() {
       );
     }
 
-    setParticipants((prevState) => [participant, ...prevState]);
+    setParticipants((previewValue) => [participant, ...previewValue]);
     setParticipant("");
   }
 
   function handleParticipantRemove(name: string) {
+    const removeParticipant = () => {
+      setParticipants((previewValue) => [
+        ...previewValue.filter((cur) => cur !== name),
+      ]);
+    };
+
     Alert.alert(
       "Remover participante",
       `Você confirma a remoção do participante ${name}?`,
       [
         {
           text: "Sim",
-          onPress: () => Alert.alert(`O participante ${name} foi removido!`),
+          onPress: removeParticipant,
         },
         {
           text: "Não",
@@ -41,8 +47,6 @@ export function Home() {
         },
       ]
     );
-
-    console.log(`Você tentou remover o participante: ${name}`);
   }
 
   return (
